@@ -15,7 +15,7 @@ cloud.canister.io:5000/arhturescriou/node-redis
 Pour l'utilisation de ces serveurs, nous devons utilier une image privé :
 
 spec:
- imagePullSecrets:
+  imagePullSecrets:
     - name: regcred
 
   ### Variables d'environnement 
