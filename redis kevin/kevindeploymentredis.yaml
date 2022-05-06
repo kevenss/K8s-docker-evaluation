@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-kevin-deployment
+  labels:
+    app: redis-kevin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-kevin-deployment
+  template:
+    metadata:
+      labels:
+        app: redis-kevin-deployment
+    spec:
+      containers:
+        - name: redis-kevin-deployment
+          image: redis
+          ports:
+            - containerPort: 6379
+          env:
+            - name: ADDRESS
+              value: 'redis:6379'
+            - name: PORT
+              value: '6379'
+            - name: MULT
+              value: 'true'
+            - name: ADD
+              value: 'true'

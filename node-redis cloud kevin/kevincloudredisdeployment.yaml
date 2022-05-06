@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cloud-kevin
+  labels:
+    app: redis-cloud-kevin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-cloud-kevin
+  template:
+    metadata:
+      labels:
+        app: redis-cloud-kevin
+  imagePullSecrets:
+    - name: regcred 
+      containers:
+        - name: redis-cloud-kevin
+          image: cloud.canister.io:5000/arhturescriou/node-redis
+          ports:
+            - containerPort: 3000
+          env:
+            - name: ADDRESS
+              value: 'noderedis:3000'
+            - name: PORT
+              value: '8080'
+            - name: MULT
+              value: 'true'
+            - name: ADD
+              value: 'true'

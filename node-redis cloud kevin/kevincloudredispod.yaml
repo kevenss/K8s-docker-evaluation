@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-cloud-kevin
+  labels:
+    purpose: redis-cloud-kevin
+    app: redis-cloud-kevin
+spec:
+ imagePullSecrets:
+    - name: regcred
+ containers:
+    - name: redis-cloud-kevin
+      image: cloud.canister.io:5000/arhturescriou/node-redis
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: PORT
+          value: '3000'
+        - name: MULT
+          value: 'true'
+        - name: ADD
+          value: 'true'

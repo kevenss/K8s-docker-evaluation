@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-cloud-kevin
+spec:
+  selector:
+    app: redis-cloud-kevin
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: LoadBalancer

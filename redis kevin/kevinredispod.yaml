@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-kevin
+  labels:
+    purpose: redis-kevin
+    app: redis-kevin
+spec:
+ imagePullSecrets:
+    - name: regcred
+ containers:
+    - name: redis-kevin
+      image: redis
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: PORT
+          value: '6379'
+        - name: MULT
+          value: 'true'
+        - name: ADD
+          value: 'true'
+     
