@@ -2,14 +2,14 @@
 
 -- Il faut récupérer le fichier kubeconfig.yml pour déployer le cluster distant
 
-# Déploiement des images
+### Déploiement des images
 
 -- Pour le cluster, nous dévons déployer deux environnements distants grace aux serveurs:
 
 redis 
 cloud.canister.io:5000/arhturescriou/node-redis
 
-  # Configuration des serveurs
+  ### Configuration des déploiements.yaml
 !!!Attention!!!
 
 Pour l'utilisation de ces serveurs, nous devons utilier une image privé :
@@ -18,7 +18,7 @@ spec:
   imagePullSecrets:
     - name: regcred
 
-  # Variables d'environnement 
+  ### Variables d'environnement 
   Pour le serveur node-redis, nous utilisons des variables d'environnement dont le port sera configuré par 3000
   ``` 
             env:
@@ -34,20 +34,22 @@ spec:
             - name: PORT
               value: '6379'
 
+### Déploiement du service
 
-### Install dependencies
-
-```
-yarn
-```
-
-or
+Pour déployer un service, nous utilserons la commande "kubectl create -f kevinredisservices.yaml" pour créer un fichier service et de configurer sur le cluster en faisant kubectl "create -f kevinredisservices.yaml".
+Dans Kubernetes, un service est une environnement qui représente un ensemble de pods par laquelle y accéder.
 
 ```
-npm install
+kubectl create -f kevinredisservices.yaml
+kubectl "create -f kevinredisservices.yaml
+``` 
+Et ensuite pour vérifier que le service a bien été créer, nous utilisons la commande "kubectl get services" pour que les services sont bien crées
+
+```
+kubectl get services
 ```
 
-### Start worker
+### Déploiement du pods
 
 ```bash
 node main
